@@ -1,7 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const db = require('.');
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      models.user.hasMany(models.pet) // one to many relationships!
+      //think arrows between tables
+      // generates a buunch of functions to use later
+      // db.user.findOne({where: {firstName: 'Billy'}}).then((billy) => {
+      //   billy.findPets;
+        // SELECT * FROM pets WHERE pets.userid = <billy's id>
       // define association here
     }
   };
